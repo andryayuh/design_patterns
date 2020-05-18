@@ -11,6 +11,7 @@ contains real business logic that's interesting for some subscribers
 
 Subscriber
 declares notification method on interface, usually update()
+notified in random order, use extra logic to notify in specific order
 
 Concrete Subscriber
 performs actions in response to notifications issued by pub
@@ -50,7 +51,7 @@ import datetime
 
 class Publisher(ABC):
 
-  def __init__(self, subscribers)
+  def __init__(self, subscribers):
     self.subscribers = subscribers  # list of tuples
 
   @abstractmethod    
@@ -80,11 +81,11 @@ class BlogPublisher(Publisher):
   def unsubscribe(self, event_type: str, sub: str):
     return super().unsubscribe(sub)
 
-  def publish(self, article)
+  def publish(self, article):
     self.articles.append(article)
     self.notify('publication', article)
 
-  def create(self, title: str, text: str)
+  def create(self, title: str, text: str):
     article = {
       'title': title,
       'text': text,
@@ -92,7 +93,7 @@ class BlogPublisher(Publisher):
     }
     self.publish(article)
 
-  def new_product(self, item: str)
+  def new_product(self, item: str):
     self.products.append(item)
     self.notify('product', item)
 
@@ -103,8 +104,8 @@ class Subscriber(ABC):
     self.log = []
   
   @abstractmethod
-  def update(event_type: str, data):
-    print(event_type + ': ' data)
+  def update(self, event_type: str, data):
+    print(event_type, data)
     self.log.append({event_type: data})
 
 
@@ -112,7 +113,7 @@ class EmailAlert(Subscriber):
   def __init__(self):
     super().__init__()
 
-  def update(event_type, data):
+  def update(self, event_type, data):
     print('Ping about ' + event_type + '. Check it: ', data)
     super.update(event_type, data)
 

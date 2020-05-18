@@ -7,6 +7,7 @@ from ..factory_method import BikiniStore
 """
 - you dont want to change code when products are updated or when you need to add new products/product families
 -  client shouldn’t care about the concrete class of the factory it works with.
+steps
 -> 1. explicitly declare interface for each distinct product of product family -> make all variants of products 
 follow those interfaces
 -> 2. declare the Abstract Factory—interface with a list of creation methods for all products that are part of the 
