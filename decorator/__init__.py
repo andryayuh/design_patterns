@@ -5,6 +5,8 @@ component interface
 concrete component
 decorator interface
 concrete decorator
+
+pro: adheres to open close principle
 """
 
 
@@ -81,6 +83,9 @@ def main():
     smoothie3 = FlaxSeed(smoothie3)
     smoothie3 = Cocoa(smoothie3)
     print_item(smoothie3)
+
+    smoothie4 = Cocoa(PeanutButterSmoothie())
+    print_item(smoothie4)
 
 
 main()
