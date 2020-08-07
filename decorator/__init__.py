@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from oop import ABC, abstractmethod
 from decimal import Decimal
 """
 component interface

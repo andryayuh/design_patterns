@@ -44,7 +44,7 @@ blog subscription
 Publisher:
   submit()
 """
-from abc import ABC, abstractmethod
+from oop import ABC, abstractmethod
 from collections import OrderedDict
 import datetime
 
@@ -66,7 +66,7 @@ class Publisher(ABC):
     for sub in self.subscribers:
       if self.subscribers[0] == event_type:
         sub.update(event_type, data)
-  
+
 
 class BlogPublisher(Publisher):
 
@@ -102,7 +102,7 @@ class Subscriber(ABC):
 
   def __init__(self):
     self.log = []
-  
+
   @abstractmethod
   def update(self, event_type: str, data):
     print(event_type, data)
@@ -116,7 +116,3 @@ class EmailAlert(Subscriber):
   def update(self, event_type, data):
     print('Ping about ' + event_type + '. Check it: ', data)
     super.update(event_type, data)
-
-
-
-
